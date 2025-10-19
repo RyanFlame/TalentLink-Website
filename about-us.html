@@ -24,10 +24,10 @@
 
         <!-- Services Dropdown -->
         <li class="dropdown">
-          <a href="#">Services <i class="fa-solid fa-chevron-down"></i></a>
+          <a href="index.html#Services">Services <i class="fa-solid fa-chevron-down"></i></a>
           <div class="mega-menu">
             <div class="mega-left">
-              <img src="Images/Marmot.jpg" alt="How TalentLink Works" />
+              <img src="Images/Nav 1.JPG" alt="How TalentLink Works" />
               <a href="#" class="ebook-btn">Download Guide</a>
             </div>
 
@@ -54,114 +54,248 @@
           </div>
         </li>
 
-        <li><a href="pricing.html">Pricing</a></li>
+  <li><a href="index.html#pricing" id="nav-pricing-link">Pricing</a></li>
       </ul>
     </nav>
 
-    <a href="#" class="cta">Get Started</a>
+    <a href="#" data-login= "true" class="cta">Get Started</a>
+
+    <script>
+      const header = document.getElementById("navbar");
+      let lastScrollY = window.scrollY;
+
+      window.addEventListener("scroll", () => {
+        const currentScrollY = window.scrollY;
+
+        // Add floating style after scrolling past hero
+        if (currentScrollY > 60) {
+          header.classList.add("scrolled");
+        } else {
+          header.classList.remove("scrolled");
+        }
+
+        // Hide on scroll down, show on scroll up
+        if (currentScrollY > lastScrollY && currentScrollY > 120) {
+          header.classList.add("hide");
+        } else {
+          header.classList.remove("hide");
+        }
+
+        lastScrollY = currentScrollY;
+      });
+    </script>
   </header>
 
-  <section id="about-us" class="about-section">
-    <div class="about-header">
-      <h2>Our Story</h2>
-      <p>Our mission is to simplify talent management through smart automation, freeing up teams to focus on people and growth — not repetitive tasks.</p>
-    </div>
 
-    <div class="about-grid">
-      <div class="about-card dark-card">
-        <h3>5M+</h3>
-        <p>Connections Made</p>
-      </div>
-      <div class="about-image large">
-        <img src="Images/AB1.jpg" alt="Team working together" />
-      </div>
-      <div class="about-image small">
-        <img src="Images/AB5.jpg" alt="Meeting session" />
-      </div>
-      <div class="about-image small">
-        <img src="Images/AB3.jpg" alt="Workspace" />
-      </div>
-      <div class="about-card dark-card">
-        <h3>30+</h3>
-        <p>Countries Served</p>
-      </div>
-    </div>
 
-    <div class="about-logos">
-      <img src="images/sparkle-logo.png" alt="Sparkle" />
-      <img src="images/lumlabs-logo.png" alt="Lum Labs" />
-      <img src="images/craftgram-logo.png" alt="Craftgram" />
-      <img src="images/pulse-logo.png" alt="Pulse" />
-      <img src="images/swift-logo.png" alt="Swift" />
-    </div>
+  <!-- ===== LOGIN SECTION (Reusable Modal) ===== -->
+  <section id="login-section">
+    <div id="loginModal" class="login-overlay">
+      <div class="login-card">
+        <!-- Left -->
+        <div class="login-left">
+          <h2>Success starts here</h2>
+          <ul>
+            <li>✔ Over 700 categories</li>
+            <li>✔ Quality work done faster</li>
+            <li>✔ Access to talent and businesses across the globe</li>
+          </ul>
+          <img src="Images/Login.jpg" alt="Login illustration" />
+        </div>
 
-    <div class="about-benefits">
-      <div class="benefit">
-        <h4>Cost Efficiency</h4>
-        <p>Optimize your hiring process with automation — no large upfront costs needed.</p>
-      </div>
-      <div class="benefit">
-        <h4>Scalability & Flexibility</h4>
-        <p>Grow with tools designed to evolve with your business and meet new demands.</p>
-      </div>
-      <div class="benefit">
-        <h4>Enhanced Security</h4>
-        <p>Your data is protected with enterprise-grade encryption and regular updates.</p>
-      </div>
-      <div class="benefit">
-        <h4>Automatic Updates</h4>
-        <p>Stay ahead with the latest features — no manual downloads or downtime.</p>
+        <!-- Right -->
+        <div class="login-right">
+          <h3>Create a new account</h3>
+          <p>Already have an account? <a href="#">Sign in</a></p>
+
+          <button class="login-btn google">
+            <i class="fa-brands fa-google"></i> Continue with Google
+          </button>
+
+          <button class="login-btn email">
+            <i class="fa-regular fa-envelope"></i> Continue with Email
+          </button>
+
+          <div class="login-or">OR</div>
+
+          <div class="login-alt">
+            <button class="login-btn apple">
+              <i class="fa-brands fa-apple"></i> Apple
+            </button>
+            <button class="login-btn facebook">
+              <i class="fa-brands fa-facebook-f"></i> Facebook
+            </button>
+          </div>
+
+          <p class="login-terms">
+            By joining, you agree to our
+            <a href="#">Terms of Service</a> and
+            <a href="#">Privacy Policy</a>.
+          </p>
+        </div>
+
+        <span class="login-close">&times;</span>
       </div>
     </div>
   </section>
 
-  <!-- ===== EMPOWERING SALES SECTION ===== -->
-<section class="empower-section">
-  <h2>Empowering sales teams to close smarter</h2>
 
-  <div class="empower-card">
-    <div class="empower-image">
-      <img src="Images/AB6.jpg" alt="Sales team collaboration">
+  <!-- ===== ABOUT US SECTION ===== -->
+  <section id="about-us" class="about-section">
+    <div class="about-header fade-up">
+      <h2>About Us</h2>
+      <h1>Building the Future of Work with Talent, Technology, and Trust</h1>
     </div>
-    <div class="empower-content">
+
+    <div class="about-hero fade-up">
+      <img src="Images/AB-Intro.jpg" alt="TalentLink Team">
+    </div>
+
+    <div class="about-stats fade-up">
+      <div class="stat"><h3>130+</h3><p>Students Connected</p></div>
+      <div class="stat"><h3>30+</h3><p>Companies Partners</p></div>
+      <div class="stat"><h3>3</h3><p>Core Domains</p></div>
+      <div class="stat"><h3>Top</h3><p>Emerging EdTech Venture</p></div>
+    </div>
+  </section>
+
+  
+  <!-- ===== DETAIL SECTION ===== -->
+  <section id="about-section">
+    <ul id="cards">
+      <!-- Card 1 -->
+      <li id="card1" class="card">
+        <div class="card-body fade-up">
+          <div class="card-content">
+            <div class="card-image">
+              <img src="Images/AB1.jpg" alt="Our Story">
+            </div>
+            <div class="card-text">
+              <h3>Our Story</h3>
+              <p>
+                TalentLink began as a university project by students from the Vietnamese-German University (VGU) 
+                who noticed a gap between academic learning and real-world work. What started as a small initiative 
+                to connect classmates with freelance projects quickly evolved into a scalable ecosystem — where education 
+                meets employment, and learning leads to opportunity.
+              </p>
+            </div>
+          </div>
+        </div>
+      </li>
+
+      <!-- Card 2 -->
+      <li id="card2" class="card">
+        <div class="card-body fade-up">
+          <div class="card-content reverse">
+            <div class="card-image">
+              <img src="Images/AB5.jpg" alt="Mission & Vision">
+            </div>
+            <div class="card-text">
+              <h3>Our Mission & Vision</h3>
+              <p>
+                We envision a world where talent meets opportunity without barriers — where every person finds their path, 
+                every skill is valued, and every ambition has the chance to shine. Our mission is to empower students and 
+                businesses through intelligent, accessible, and trusted technology that helps careers grow faster and teams 
+                grow stronger.
+              </p>
+            </div>
+          </div>
+        </div>
+      </li>
+
+      <!-- Card 3 -->
+      <li id="card3" class="card">
+        <div class="card-body fade-up">
+          <div class="card-content">
+            <div class="card-image">
+              <img src="https://images.unsplash.com/photo-1504384308090-c894fdcc538d?auto=format&fit=crop&w=800&q=80" alt="What We Do">
+            </div>
+            <div class="card-text">
+              <h3>What We Do</h3>
+              <ul>
+                <li><b>On-demand Projects:</b> Post → Match → Pay by milestone.</li>
+                <li><b>Direct Hiring Pipeline:</b> Trial projects → fast-track internships or full-time offers.</li>
+                <li><b>Skill Academy & Badges:</b> Verified, employer-trusted learning.</li>
+                <li><b>Talent-as-a-Service (TaaS):</b> Curated student squads for ongoing tasks.</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </li>
+
+      <!-- Card 4 -->
+      <li id="card4" class="card">
+        <div class="card-body fade-up">
+          <div class="card-content reverse">
+            <div class="card-image">
+              <img src="https://images.unsplash.com/photo-1556761175-5973dc0f32e7?auto=format&fit=crop&w=800&q=80" alt="Our Approach">
+            </div>
+            <div class="card-text">
+              <h3>Our Approach</h3>
+              <p>
+                We combine technology, community, and credibility to make talent development accessible for everyone. 
+                Our model operates on three principles:
+              </p>
+              <ul>
+                <li><b>Human-first Automation:</b> AI handles the matching — people handle the impact.</li>
+                <li><b>Education-led Growth:</b> Each project doubles as a learning experience.</li>
+                <li><b>Trust through Verification:</b> Skills are validated through real-world results.</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </li>
+    </ul>
+  </section>
+
+
+
+  <!-- ===== EMPOWERING FUTURE CAREERS SECTION (Gallery Style) ===== -->
+  <section class="empower-gallery">
+    <div class="intro">
+      <span class="tag">TalentLink</span>
+      <h2>Empowering the Next Generation of Careers</h2>
       <p>
-        Empowering sales teams to close smarter means more than just automating tasks —
-        it’s about giving your team the tools and insights to focus.
+        At TalentLink, we’re reimagining how students and employers connect. 
+        Our mission is to turn learning into opportunity — enabling students to gain real experience, 
+        and businesses to access trusted young talent ready to deliver from day one.
       </p>
-      <ul>
-        <li>
-          <strong>Automate Repetitive Tasks</strong><br>
-          Sales professionals shouldn’t be stuck updating spreadsheets or chasing down follow-ups.
-        </li>
-        <li>
-          <strong>Gain Actionable Insights</strong><br>
-          Real-time analytics help you make smarter, faster sales decisions. Our platform automates repetitive tasks.
-        </li>
-      </ul>
     </div>
-  </div>
-</section>
 
-<!-- ===== PURPOSE VALUES SECTION ===== -->
-<section class="purpose-section">
-  <h2>Driven by purpose values</h2>
+    <div class="empower-slider">
+      <div class="empower-track">
+        <img src="https://images.unsplash.com/photo-1521737604893-d14cc237f11d?auto=format&fit=crop&w=800&q=80" alt="Students collaborating">
+        <img src="Images/Empower/E6.jpg" alt="Career growth discussion">
+        <img src="https://images.unsplash.com/photo-1556761175-5973dc0f32e7?auto=format&fit=crop&w=800&q=80" alt="Modern workspace">
+        <img src="https://images.unsplash.com/photo-1580894732444-8ecded7900cd?auto=format&fit=crop&w=800&q=80" alt="Student teamwork">
+        <img src="Images/Empower/E4.jpg" alt="Learning session">
+        <img src="Images/Empower/E2.jpg" alt="Professional networking">
+        <img src="Images/Empower/E3.jpg" alt="Professional networking">
+        <img src="https://images.unsplash.com/photo-1531482615713-2afd69097998?auto=format&fit=crop&w=800&q=80" alt="Professional networking">
+        <img src="Images/Empower/E5.jpg" alt="Professional networking">
+        <img src="Images/Empower/E1.jpg" alt="Professional networking">
+        <img src="Images/Empower/E7.jpg" alt="Professional networking">
+        <!-- Duplicate for infinite loop -->
+        <img src="https://images.unsplash.com/photo-1521737604893-d14cc237f11d?auto=format&fit=crop&w=800&q=80" alt="">
+        <img src="Images/Empower/E6.jpg" alt="">
+        <img src="https://images.unsplash.com/photo-1556761175-5973dc0f32e7?auto=format&fit=crop&w=800&q=80" alt="">
+        <img src="https://images.unsplash.com/photo-1580894732444-8ecded7900cd?auto=format&fit=crop&w=800&q=80" alt="">
+        <img src="Images/Empower/E4.jpg" alt="">
+      </div>
+      <div class="blur left"></div>
+      <div class="blur right"></div>
+    </div>
+    
 
-  <div class="purpose-grid">
-    <div class="purpose-card">
-      <h4>Innovation with Impact</h4>
-      <p>We embrace bold ideas and cutting-edge technology to solve real-world sales challenges.</p>
+    <div class="cta-buttons">
+      <a href="#" data-login= "true" class="btn primary">Join as Talent</a>
+      <a href="#" data-login= "true" class="btn secondary">Hire with TalentLink</a>
     </div>
-    <div class="purpose-card">
-      <h4>Customer-Centered Always</h4>
-      <p>Every feature we build starts by understanding our customers’ needs and goals.</p>
-    </div>
-    <div class="purpose-card">
-      <h4>Simplicity That Scales</h4>
-      <p>We design intuitive tools that grow with your business, without complexity or clutter.</p>
-    </div>
-  </div>
-</section>
+  </section>
 
+
+
+ 
 
   <!-- TEAM SECTION -->
     <section class="team-section">
@@ -175,48 +309,48 @@
           <!-- top row: explicit grid (4 columns) -->
           <div class="team-row top">
             <div class="team-member">
-              <img src="images/team1.jpg" alt="Jordan Blake">
-              <h4>Jordan Blake</h4>
-              <p>Senior Product Manager</p>
+              <img src="Images/Teams/QuocBao.jpeg" alt="Bao">
+              <h4>Nguyen Tu Quoc Bao</h4>
+              <p>CEO of TalentLink</p>
             </div>
 
             <div class="team-member">
-              <img src="images/team2.jpg" alt="James">
-              <h4>James</h4>
-              <p>Senior PM</p>
+              <img src="Images/Teams/Q.Huy.jpg" alt="Huy">
+              <h4>Pham Quang Huy</h4>
+              <p>CMO of TalentLink</p>
             </div>
 
             <div class="team-member">
-              <img src="images/team3.jpg" alt="Robert">
-              <h4>Robert</h4>
-              <p>Senior Product Owner</p>
+              <img src="Images/Teams/Vy.jpg" alt="Vy">
+              <h4>Ha Nguyen Tuong Vy</h4>
+              <p>CFO of TalentLink</p>
             </div>
 
             <div class="team-member">
-              <img src="images/team4.jpg" alt="David">
-              <h4>David</h4>
-              <p>Lead Product Manager</p>
+              <img src="Images/Teams/H.Anh 2.jpg" alt="H.Anh">
+              <h4>Nguyen Huynh Anh</h4>
+              <p>CDO of TalentLink</p>
             </div>
           </div>
 
           <!-- bottom row: flex centered (3 members) -->
           <div class="team-row bottom">
             <div class="team-member">
-              <img src="images/team5.jpg" alt="Sarah Johnson">
-              <h4>Sarah Johnson</h4>
-              <p>Marketing Director</p>
+              <img src="Images/Teams/Thao.jpg" alt="Thao">
+              <h4>Nguyen Ngoc Phuong Thao</h4>
+              <p>CTO of TalentLink</p>
             </div>
 
             <div class="team-member">
-              <img src="images/team6.jpg" alt="Alex Kim">
-              <h4>Alex Kim</h4>
-              <p>Lead UX Designer</p>
+              <img src="Images/Teams/BaoTran.jpg" alt="Tran">
+              <h4>Tang Ngoc Bao Tran</h4>
+              <p>Head of Talent & Partnerships</p>
             </div>
 
             <div class="team-member">
-              <img src="images/team7.jpg" alt="Emily Carter">
-              <h4>Emily Carter</h4>
-              <p>Software Engineer</p>
+              <img src="Images/Teams/TramAnh.jpg" alt="Anh">
+              <h4>Pham Dinh Tram Anh </h4>
+              <p>Chief Operations Officer</p>
             </div>
           </div>
         </div>
@@ -228,26 +362,33 @@
     <p>© 2025 TalentLink. All rights reserved.</p>
   </footer>
 
-    <script>
-    let lastScrollY = window.scrollY;
-    const navbar = document.querySelector("header");
 
-    window.addEventListener("scroll", () => {
-      if (window.scrollY > lastScrollY && window.scrollY > 120) {
-        navbar.classList.add("hide");
-      } else {
-        navbar.classList.remove("hide");
+    <!-- ===== LOGIN MODAL SCRIPT ===== -->
+  <script>
+    const loginModal = document.getElementById('loginModal');
+    const closeModal = document.querySelector('.login-close');
+
+    // Attach modal trigger to all elements with [data-login="true"]
+    document.querySelectorAll('[data-login="true"]').forEach(btn => {
+      btn.addEventListener('click', (e) => {
+        e.preventDefault();
+        loginModal.style.display = 'flex';
+      });
+    });
+
+    // Close modal when clicking the X
+    closeModal.addEventListener('click', () => {
+      loginModal.style.display = 'none';
+    });
+
+    // Close modal when clicking outside of it
+    window.addEventListener('click', (e) => {
+      if (e.target === loginModal) {
+        loginModal.style.display = 'none';
       }
-
-      if (window.scrollY > 60) {
-        navbar.classList.add("scrolled");
-      } else {
-        navbar.classList.remove("scrolled");
-      }
-
-      lastScrollY = window.scrollY;
     });
   </script>
+
 
 </body>
 </html>
