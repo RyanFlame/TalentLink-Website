@@ -20,15 +20,19 @@
     <div class="header-logo">
       <img src="Images/logo 1.png" alt="TalentLink Logo" />
     </div>
+    <!-- Mobile nav toggle -->
+    <button class="nav-toggle" aria-label="Open navigation" aria-expanded="false" aria-controls="primary-navigation">
+      <i class="fa-solid fa-bars"></i>
+    </button>
 
     <nav class="nav-menu" aria-label="Primary">
       <ul>
         <li><a href="#">Home</a></li>
-        <li><a href="#">About Us</a></li>
+        <li><a href="about-us.html">About Us</a></li>
 
         <!-- Services Dropdown -->
         <li class="dropdown">
-          <a href="#">Services <i class="fa-solid fa-chevron-down"></i></a>
+          <a href="#Services">Services <i class="fa-solid fa-chevron-down"></i></a>
           <div class="mega-menu">
             <div class="mega-left">
               <img src="Images/Nav 1.JPG" alt="How TalentLink Works" />
@@ -58,43 +62,162 @@
           </div>
         </li>
 
-        <li><a href="#">Pricing</a></li>
+  <li><a href="#pricing" id="nav-pricing-link">Pricing</a></li>
       </ul>
     </nav>
 
-    <a href="#" class="cta">Get Started</a>
+    <a href="#" data-login= "true" class="cta">Get Started</a>
+    <script>
+      // Header scroll behaviour (existing)
+      const header = document.getElementById("navbar");
+      let lastScrollY = window.scrollY;
+
+      window.addEventListener("scroll", () => {
+        const currentScrollY = window.scrollY;
+
+        // Add floating style after scrolling past hero
+        if (currentScrollY > 60) {
+          header.classList.add("scrolled");
+        } else {
+          header.classList.remove("scrolled");
+        }
+
+        // Hide on scroll down, show on scroll up
+        if (currentScrollY > lastScrollY && currentScrollY > 120) {
+          header.classList.add("hide");
+        } else {
+          header.classList.remove("hide");
+        }
+
+        lastScrollY = currentScrollY;
+      });
+
+      // Mobile navigation toggle
+      (function () {
+        const navToggle = document.querySelector('.nav-toggle');
+        const navMenu = document.querySelector('.nav-menu');
+        if (!navToggle || !navMenu) return;
+
+        navToggle.addEventListener('click', () => {
+          const isOpen = navMenu.classList.toggle('open');
+          document.body.classList.toggle('no-scroll', isOpen);
+          navToggle.setAttribute('aria-expanded', String(isOpen));
+          // switch icon
+          const icon = navToggle.querySelector('i');
+          if (icon) icon.className = isOpen ? 'fa-solid fa-xmark' : 'fa-solid fa-bars';
+        });
+
+        // Close menu when a link is clicked (for single-page behaviour)
+        navMenu.addEventListener('click', (e) => {
+          const target = e.target;
+          if (target.tagName === 'A') {
+            navMenu.classList.remove('open');
+            document.body.classList.remove('no-scroll');
+            navToggle.setAttribute('aria-expanded', 'false');
+            const icon = navToggle.querySelector('i');
+            if (icon) icon.className = 'fa-solid fa-bars';
+          }
+        });
+      })();
+    </script>
   </header>
 
-  <!-- ===== HERO / INTRO SECTION ===== -->
-  <!-- Purpose: Present the main value proposition and primary CTAs. -->
-  <section id="hero" class="hero-section" data-aos="fade-up">
-    <div class="hero-container staggered-animation">
-      <div class="hero-text bounce-in">
-        <h1>Get every task done from your single platform.</h1>
-        <p>Empower your team and grow your business with TalentLink’s intelligent talent management suite.</p>
-        <div class="hero-buttons">
-          <a href="#" class="btn-primary">Create Free Account</a>
-          <a href="#" class="btn-secondary">Book a Demo</a>
-        </div>
-      </div>
 
-      <div class="hero-image">
-        <img src="Images/Hreo S.png" alt="TalentLink Dashboard">
+
+
+
+  <!-- ===== LOGIN SECTION (Reusable Modal) ===== -->
+  <section id="login-section">
+    <div id="loginModal" class="login-overlay">
+      <div class="login-card">
+        <!-- Left -->
+        <div class="login-left">
+          <h2>Success starts here</h2>
+          <ul>
+            <li>✔ Over 700 categories</li>
+            <li>✔ Quality work done faster</li>
+            <li>✔ Access to talent and businesses across the globe</li>
+          </ul>
+          <img src="Images/Login.jpg" alt="Login illustration" />
+        </div>
+
+        <!-- Right -->
+        <div class="login-right">
+          <h3>Create a new account</h3>
+          <p>Already have an account? <a href="#">Sign in</a></p>
+
+          <button class="login-btn google">
+            <i class="fa-brands fa-google"></i> Continue with Google
+          </button>
+
+          <button class="login-btn email">
+            <i class="fa-regular fa-envelope"></i> Continue with Email
+          </button>
+
+          <div class="login-or">OR</div>
+
+          <div class="login-alt">
+            <button class="login-btn apple">
+              <i class="fa-brands fa-apple"></i> Apple
+            </button>
+            <button class="login-btn facebook">
+              <i class="fa-brands fa-facebook-f"></i> Facebook
+            </button>
+          </div>
+
+          <p class="login-terms">
+            By joining, you agree to our
+            <a href="#">Terms of Service</a> and
+            <a href="#">Privacy Policy</a>.
+          </p>
+        </div>
+
+        <span class="login-close">&times;</span>
       </div>
     </div>
   </section>
 
 
+  <!-- ===== END LOGIN SECTION ===== -->
+
+
+
+
+  <!-- ===== HERO / INTRO SECTION ===== -->
+  <section id="hero" class="hero-section" data-aos="fade-up">
+    <div class="hero-container staggered-animation">
+      <div class="hero-text bounce-in">
+        <h1>Where Employers meet Verified Student Talent.</h1>
+        <p>TalentLink connects growing businesses with top verified students — hire faster, gain credibility, and grow together through skill and opportunity.</p>
+
+        <div class="hero-buttons">
+          <!-- Fixed: prevent scroll-to-top -->
+          <a href="javascript:void(0)" class="btn-primary" data-login="true">Post a Job</a>
+          <a href="javascript:void(0)" class="btn-secondary" data-login="true">Join as a Student</a>
+        </div>
+      </div>
+
+      <div class="hero-image">
+        <img src="Images/Hreo S.png" alt="PropaSol Platform Interface">
+      </div>
+    </div>
+  </section>
+
+
+
+
+
+  
   <!-- ===== EXPLORE / INTRO BLURB ===== -->
   <!-- Purpose: Short section inviting users to explore top student talent. -->
-  <section class="explore">
+  <section class="explore" id="Services" >
     <h1>Explore Top Student Talent</h1>
   </section>
 
 
   <!-- ===== CATEGORIES GRID ===== -->
   <!-- Purpose: Quick glance categories to help users jump to talent verticals. Each card represents a category. -->
-  <section class="categories"> <!-- remove data-aos here -->
+  <section class="categories" data-login="true"> <!-- remove data-aos here -->
     <div class="category-card card-hover"><i>💻</i><h3>Development & IT</h3></div>
     <div class="category-card card-hover"><i>🎨</i><h3>Design & Creative</h3></div>
     <div class="category-card card-hover"><i>🤖</i><h3>AI & Data Services</h3></div>
@@ -107,73 +230,76 @@
 
 
 
-  <!-- ===== Description ===== -->
-  <section class="fabulous-section">
-    <div class="fabulous-container">
-      <div class="fabulous-text">
-        <h2>Built with Students, for Students — Globally</h2>
-        <p>We listened to hundreds of university students 
-          <strong>from RMIT to MIT, Brown, Rice, and Karlsruhe University of Applied Sciences</strong>.</p>
-        
-      </div>
+  <!-- ===== WHY ITS WORK ===== -->
+  <section id="why-it-works" class="why-it-works">
+    <div class="container">
+      <h2 class="section-title">Why it <span>works</span></h2>
+      <p class="section-subtitle">Discover how TalentLink delivers real value for every group in our ecosystem.</p>
 
-      <!-- Floating Icons -->
-      <div class="floating-icons">
-        <span class="icon">🎓</span>
-        <span class="icon">💡</span>
-        <span class="icon">🌍</span>
-        <span class="icon">📊</span>
-        <span class="icon">✨</span>
-        <span class="icon">🚀</span>
-        <span class="icon">💬</span>
-        <span class="icon">🤝</span>
-
-      </div>
-
-
-      <div class="fabulous-cards">
-        <!-- Card 1 -->
-        <div class="fabulous-card">
-          <div class="card-inner">
-            <div class="card-front" style="background: linear-gradient(135deg, #ffd6e0, #fff5e4);">
-              <h3>95.5%</h3>
-              <p>Students Can’t wait to Join at Launch </p>
-            </div>
-            <div class="card-back" style="background: linear-gradient(135deg, #fff5e4, #ffd6e0);">
-              <p>Students are excited to hop in the moment we launch. 
-                That kind of energy drives us to build something truly valuable for them.</p>
-            </div>
-          </div>
+      <div class="why-content">
+        <div class="why-image">
+          <img id="why-image-display" src="Images/Why/Employers.webp" alt="Employers" />
         </div>
 
-        <!-- Card 2 -->
-        <div class="fabulous-card">
-          <div class="card-inner">
-            <div class="card-front" style="background: linear-gradient(135deg, #e0f7fa, #e1bee7);">
-              <h3>84.7%</h3>
-              <p>Would recommend us to friends</p>
+        <div class="why-accordion">
+          <div class="why-item active" data-img="Images/Why/Employers.webp">
+            <div class="why-header">
+              <h3>For Employers</h3>
+              <span class="icon">×</span>
             </div>
-            <div class="card-back" style="background: linear-gradient(135deg, #e1bee7, #e0f7fa);">
-              <p>Most students would happily share our platform with their classmates once it’s live.</p>
+            <div class="why-body">
+              <p>Affordable, flexible hiring options (project-based, placements, or TaaS).</p>
+              <p>Gain access to a verified pool of skilled, motivated students.</p>
             </div>
           </div>
-        </div>
 
-        <!-- Card 3 -->
-        <div class="fabulous-card">
-          <div class="card-inner">
-            <div class="card-front" style="background: linear-gradient(135deg, #f3e5f5, #e1f5fe);">
-              <h3>91%</h3>
-              <p>Want to connect with real companies</p>
+          <div class="why-item" data-img="Images/Why/Students 2.jpg">
+            <div class="why-header">
+              <h3>For Students</h3>
+              <span class="icon">+</span>
             </div>
-            <div class="card-back" style="background: linear-gradient(135deg, #e1f5fe, #f3e5f5);">
-              <p>Nearly all respondents said “yes” to being directly recruited if they perform well.</p>
+            <div class="why-body">
+              <p>Earn paid, practical experience while studying.</p>
+              <p>Build portfolios, gain certifications, and access direct-hire opportunities.</p>
+              <p>A supportive, career-focused platform — not just another gig site.</p>
+            </div>
+          </div>
+
+          <div id="Why-uni" class="why-item" data-img="Images/Why/University.jpg">
+            <div class="why-header">
+              <h3>For Universities</h3>
+              <span class="icon">+</span>
+            </div>
+            <div class="why-body">
+              <p>Strengthen student employability and career outcomes.</p>
+              <p>Showcase graduate readiness and industry alignment, improving institutional reputation.</p>
             </div>
           </div>
         </div>
       </div>
     </div>
   </section>
+
+  <script>
+  const whyItems = document.querySelectorAll(".why-item");
+  const imageDisplay = document.getElementById("why-image-display");
+
+  whyItems.forEach(item => {
+    item.addEventListener("click", () => {
+      // collapse others
+      whyItems.forEach(i => {
+        i.classList.remove("active");
+        i.querySelector(".icon").textContent = "+";
+      });
+      // expand current
+      item.classList.add("active");
+      item.querySelector(".icon").textContent = "×";
+      // switch image
+      const imgSrc = item.getAttribute("data-img");
+      imageDisplay.src = imgSrc;
+    });
+  });
+  </script>
 
 
 
@@ -195,7 +321,7 @@
           <div class="cta-text">
             <h1>Find real talent that <span class="pink-accent">actually delivers</span></h1>
             <p>Post your short-term or project-based needs and get matched with skilled students and young professionals who bring energy, creativity, and results — all verified by their work, not just a CV.</p>
-            <button class="cta-btn pink">Post a Project</button>
+            <button class="cta-btn pink" data-login="true">Post a Project</button>
           </div>
           <div class="cta-image" id="hiring-vid">
             <video autoplay loop muted playsinline>
@@ -212,7 +338,7 @@
           <div class="cta-text">
             <h1>Turn your <span class="green-accent">skills into experience</span></h1>
             <p>Join real-world projects from startups and companies that value your effort. Build your portfolio, get paid, and grow your career — all while studying.</p>
-            <button class="cta-btn green">Explore Projects</button>
+            <button class="cta-btn green" data-login="true">Explore Projects</button>
           </div>
           <div class="cta-image" id="finding-vid">
             <video autoplay loop muted playsinline>
@@ -275,7 +401,7 @@
             <div class="case-grid">
         <!-- Card 1 -->
         <div class="case-card">
-          <img src="Uni/Uni 7.jpg" alt="University Collab">
+          <img src="Images/Uni/Uni 7.jpg" alt="University Collab">
           <div class="brand-strip">
             <span class="brand">University Collab</span>
           </div>
@@ -292,7 +418,7 @@
 
         <!-- Card 2 -->
         <div class="case-card">
-          <img src="Uni/Uni 2.jpg" alt="Startup Partnership">
+          <img src="Images/Uni/Uni 2.jpg" alt="Startup Partnership">
           <div class="brand-strip">
             <span class="brand">Startup Partnership</span>
           </div>
@@ -309,7 +435,7 @@
 
         <!-- Card 3 -->
         <div class="case-card">
-          <img src="Uni/Uni 3.jpg" alt="Career Dashboard">
+          <img src="Images/Uni/Uni 3.jpg" alt="Career Dashboard">
           <div class="brand-strip">
             <span class="brand">Career Dashboard</span>
           </div>
@@ -326,7 +452,7 @@
 
         <!-- Card 4 -->
         <div class="case-card">
-          <img src="Uni/Uni 4.jpg" alt="Global Talent Network">
+          <img src="Images/Uni/Uni 4.jpg" alt="Global Talent Network">
           <div class="brand-strip">
             <span class="brand">Global Talent Network</span>
           </div>
@@ -346,46 +472,209 @@
 
 
 
-  <!-- ===== Impact Section ===== -->
-  <section class="impact-section">
-    <div class="impact-container">
-      <h2>Designed for Real Impact</h2>
-      <p class="impact-subtext">
-        From global universities to local innovators — we’re building tools that empower students to grow, connect, and make a difference.
-      </p>
+  <!-- ===== SURVEY INSIGHTS (sliding cards) ===== -->
+  <section id="survey" class="survey-section">
+    <div class="survey-grid">
+      
+      <!-- Left column -->
+      <div class="survey-left">
+        <h2>What they say<br>about TalentLink</h2>
+        <div class="nav-buttons">
+          <button class="prev">&#8592;</button>
+          <button class="next">&#8594;</button>
+        </div>
+      </div>
 
-      <div class="impact-grid">
-        <!-- Card 1 -->
-        <div class="impact-card">
-          <div class="impact-visual gradient-blue">
-            <div class="visual-box">
-              <img id="left" src="Images/A1.avif" alt="">
+      <!-- Right column -->
+      <div class="survey-right">
+        <div class="survey-slider">
+          <div class="survey-track">
+            <!-- Card 0 – Survey Overview -->
+            <div class="survey-card">
+              <div id="Card-O" class="metric-box">
+                <h3>150+ Participants</h3>
+                <p>Across universities & companies</p>
+              </div>
+              <div class="survey-content">
+                <h4>Our TalentLink survey gathered insights from over <b>120 students</b> across top universities and <b>30+ companies</b> — including major firms like <b>FPT, CBRE, Viettel</b>, and many innovative SMEs nationwide.</h4>
+                <a href="#" class="read-link">View full report</a>
+                <img src="Images/Survey/SurveyIntro.jpg" alt="Survey Overview" class="survey-img">
+              </div>
             </div>
-          </div>
-          <div class="impact-text">
-            <h3>Collaborative Testing</h3>
-            <p>We work with students across continents to refine every feature before release — ensuring real-world relevance and seamless experience.</p>
-            <button class="impact-btn">Learn More</button>
+
+            <!-- Card 1 – Student Excitement -->
+            <div class="survey-card">
+              <div class="metric-box">
+                <h3>95.5%</h3>
+                <p>Students eager to join and explore real projects</p>
+              </div>
+              <div class="survey-content">
+                <h4>TalentLink sparks strong enthusiasm among students who want verified, real-world opportunities to grow their portfolios and professional skills.</h4>
+                <a href="#" class="read-link">Read full survey</a>
+                <img src="Images/Survey/Survey 1.avif" alt="Survey 1" class="survey-img">
+              </div>
+            </div>
+
+            <!-- Card 2 – Student Satisfaction -->
+            <div class="survey-card">
+              <div class="metric-box">
+                <h3>84.7%</h3>
+                <p>Students would recommend TalentLink to peers</p>
+              </div>
+              <div class="survey-content">
+                <h4>Students believe TalentLink’s project-based model helps them gain credible experience and create portfolios that employers actually notice.</h4>
+                <a href="#" class="read-link">Read full survey</a>
+                <img src="Images/Survey/Survey 2.avif" alt="Survey 2" class="survey-img">
+              </div>
+            </div>
+
+            <!-- Card 3 – Student Collaboration Interest -->
+            <div class="survey-card">
+              <div class="metric-box">
+                <h3>91%</h3>
+                <p>Students want to work with real companies</p>
+              </div>
+              <div class="survey-content">
+                <h4>Most students are actively looking for collaboration with real firms, showing readiness to turn classroom skills into workplace results.</h4>
+                <a href="#" class="read-link">Read full survey</a>
+                <img src="Images/Survey/Survey 3.avif" alt="Survey 3" class="survey-img">
+              </div>
+            </div>
+
+            <!-- Card 4 – Employer Demand -->
+            <div class="survey-card">
+              <div id="Card-E" class="metric-box">
+                <h3>81%</h3>
+                <p>Employers already hire interns or short-term talent</p>
+              </div>
+              <div class="survey-content">
+                <h4>Most companies rely on student interns or short projects to fill skill gaps — confirming a strong and consistent market demand for flexible student talent.</h4>
+                <a href="#" class="read-link">Read full survey</a>
+                <img src="Images/Survey/Survey 4.jpg" alt="Survey 4" class="survey-img">
+              </div>
+            </div>
+
+            <!-- Card 5 – Employer Interest in Platform -->
+            <div class="survey-card">
+              <div id="Card-E" class="metric-box">
+                <h3>90%</h3>
+                <p>Employers want a verified student-matching platform</p>
+              </div>
+              <div class="survey-content">
+                <h4>Nearly all respondents said they would use a platform like TalentLink to find and manage verified students for freelance or short-term work.</h4>
+                <a href="#" class="read-link">Read full survey</a>
+                <img src="Images/Survey/Survey 5.webp" alt="Survey 5" class="survey-img">
+              </div>
+            </div>
+
+            <!-- Card 6 – Employer Conversion Potential -->
+            <div class="survey-card">
+              <div id="Card-E" class="metric-box">
+                <h3>74%</h3>
+                <p>Employers would hire top students after projects</p>
+              </div>
+              <div class="survey-content">
+                <h4>Many companies shared that successful project collaborations often lead to real job offers — proving the platform’s ability to convert projects into employment.</h4>
+                <a href="#" class="read-link">Read full survey</a>
+                <img src="Images/Survey/Survey 6.PNG" alt="Survey 6" class="survey-img">
+              </div>
+            </div>
+
+
+
+            <!-- Add more cards as needed -->
           </div>
         </div>
-
-        <!-- Card 2 -->
-        <div class="impact-card">
-          <div class="impact-visual gradient-pink">
-            <div class="visual-box">
-              <img id="right" src="Images/A2.avif" alt="">
-            </div>
-
-          </div>
-          <div class="impact-text">
-            <h3>Feedback that Fuels</h3>
-            <p>Every idea, every tweak comes from genuine student feedback — from RMIT to MIT and beyond. We listen, we build, we improve together.</p>
-            <button class="impact-btn">Join the Beta</button>
-          </div>
-        </div>
+        <div class="blur-overlay"></div>
       </div>
     </div>
   </section>
+
+
+
+  <script>
+  (function () {
+    const section = document.getElementById('survey');
+    if (!section) return;
+
+    const track = section.querySelector('.survey-track');
+    const nextBtn = section.querySelector('.next');
+    const prevBtn = section.querySelector('.prev');
+    const cards = section.querySelectorAll('.survey-card');
+    let currentIndex = 0;
+    let autoSlideInterval = null;
+    let autoDelay = 5000; // default 5 seconds
+    let userActive = false;
+    let userTimeout = null;
+
+    if (!track || !nextBtn || !prevBtn || cards.length === 0) return;
+
+    function updateSlide() {
+      const cardStyle = window.getComputedStyle(cards[0]);
+      const cardWidth = cards[0].offsetWidth + parseInt(cardStyle.marginRight);
+      const maxIndex = cards.length - 1;
+      currentIndex = Math.max(0, Math.min(currentIndex, maxIndex));
+      track.style.transform = `translateX(-${currentIndex * cardWidth}px)`;
+    }
+
+    function nextSlide() {
+      currentIndex = (currentIndex + 1) % cards.length;
+      updateSlide();
+    }
+
+    function prevSlide() {
+      currentIndex = (currentIndex - 1 + cards.length) % cards.length;
+      updateSlide();
+    }
+
+    // --- Auto slide control ---
+    function startAutoSlide() {
+      stopAutoSlide();
+      autoSlideInterval = setInterval(nextSlide, autoDelay);
+    }
+
+    function stopAutoSlide() {
+      if (autoSlideInterval) clearInterval(autoSlideInterval);
+    }
+
+    // --- Handle user click behavior ---
+    function handleUserInteraction() {
+      userActive = true;
+      autoDelay = 9000; // switch to 9s when user interacts
+      startAutoSlide(); // restart with new delay
+      if (userTimeout) clearTimeout(userTimeout);
+      userTimeout = setTimeout(() => {
+        userActive = false;
+        autoDelay = 5000; // revert to 5s after inactivity
+        startAutoSlide();
+      }, 10000); // after 10s of no interaction
+    }
+
+    nextBtn.addEventListener('click', () => {
+      nextSlide();
+      handleUserInteraction();
+    });
+
+    prevBtn.addEventListener('click', () => {
+      prevSlide();
+      handleUserInteraction();
+    });
+
+    window.addEventListener('resize', updateSlide);
+
+    // --- Initialize ---
+    updateSlide();
+    startAutoSlide();
+  })();
+  </script>
+
+
+
+
+
+
+
+  <!-- ===== END SURVEY INSIGHTS ===== -->
 
 
 
@@ -467,6 +756,27 @@
     }
   });
 </script>
+
+  <script>
+    // Smooth-scroll to #pricing with header offset
+    (function(){
+      const link = document.getElementById('nav-pricing-link');
+      const target = document.getElementById('pricing');
+      const navbar = document.querySelector('header');
+      if (!link || !target) return;
+
+      link.addEventListener('click', function(e){
+        e.preventDefault();
+        // Compute header height depending on scrolled state
+        const headerHeight = navbar ? navbar.getBoundingClientRect().height : 80;
+        const rect = target.getBoundingClientRect();
+        const absoluteY = window.scrollY + rect.top;
+        const offsetY = Math.max(0, absoluteY - headerHeight - 12); // small gap
+
+        window.scrollTo({ top: offsetY, behavior: 'smooth' });
+      });
+    })();
+  </script>
 
 
 
@@ -607,24 +917,45 @@
   </script>
 
   <script>
-    let lastScrollY = window.scrollY;
-    const navbar = document.querySelector("header");
+    (function(){
+      const navbar = document.querySelector('header');
+      if (!navbar) return;
 
-    window.addEventListener("scroll", () => {
-      if (window.scrollY > lastScrollY && window.scrollY > 120) {
-        navbar.classList.add("hide");
-      } else {
-        navbar.classList.remove("hide");
+      let lastScrollY = window.scrollY || 0;
+      let ticking = false;
+
+      function onScroll() {
+        const currentY = window.scrollY || 0;
+
+        // Add scrolled class when we've moved down a bit
+        if (currentY > 60) {
+          navbar.classList.add('scrolled');
+        } else {
+          // At very top, restore full-width flat bar
+          navbar.classList.remove('scrolled');
+          navbar.classList.remove('hide');
+        }
+
+        // Hide when scrolling down, show when scrolling up
+        if (currentY > lastScrollY && currentY > 120) {
+          // scrolling down
+          navbar.classList.add('hide');
+        } else if (currentY < lastScrollY) {
+          // scrolling up
+          navbar.classList.remove('hide');
+        }
+
+        lastScrollY = currentY;
+        ticking = false;
       }
 
-      if (window.scrollY > 60) {
-        navbar.classList.add("scrolled");
-      } else {
-        navbar.classList.remove("scrolled");
-      }
-
-      lastScrollY = window.scrollY;
-    });
+      window.addEventListener('scroll', function() {
+        if (!ticking) {
+          window.requestAnimationFrame(onScroll);
+          ticking = true;
+        }
+      }, { passive: true });
+    })();
   </script>
 
   <!-- Initialize AOS -->
@@ -639,26 +970,38 @@
 
 
 
+  <!-- ===== LOGIN MODAL SCRIPT ===== -->
+  <script>
+    const loginModal = document.getElementById('loginModal');
+    const closeModal = document.querySelector('.login-close');
+
+    // Attach modal trigger to all elements with [data-login="true"]
+    document.querySelectorAll('[data-login="true"]').forEach(btn => {
+      btn.addEventListener('click', (e) => {
+        e.preventDefault();
+        loginModal.style.display = 'flex';
+      });
+    });
+
+    // Close modal when clicking the X
+    closeModal.addEventListener('click', () => {
+      loginModal.style.display = 'none';
+    });
+
+    // Close modal when clicking outside of it
+    window.addEventListener('click', (e) => {
+      if (e.target === loginModal) {
+        loginModal.style.display = 'none';
+      }
+    });
+  </script>
+
+
+
 
   <!-- Toggle Switch Script -->
 
-  <script>
-  const hiring = document.getElementById("hiring");
-  const finding = document.getElementById("finding");
-  const toggleBg = document.querySelector(".toggle-bg");
-
-  hiring.addEventListener("click", () => {
-    hiring.classList.add("active");
-    finding.classList.remove("active");
-    toggleBg.style.transform = "translateX(0)";
-  });
-
-  finding.addEventListener("click", () => {
-    finding.classList.add("active");
-    hiring.classList.remove("active");
-    toggleBg.style.transform = "translateX(100%)";
-  });
-</script>
+  <!-- Duplicate toggle handlers removed: the hiring/finding toggle is handled earlier with a safer controller. -->
 
 
 </body>
